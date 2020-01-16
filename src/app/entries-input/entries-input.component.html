@@ -1,0 +1,23 @@
+<div class="content-container">
+  <h1>Type in your entries:</h1>
+
+  <h2>You have {{ numberOfEntries() }} entries</h2>
+
+  <div class="menu-list">
+    <div>
+      <form [formGroup]="entryForm" (ngSubmit)="saveEntry()">
+        <mat-form-field>
+          <input matInput type="text" formControlName="entry">
+        </mat-form-field>
+        <p *ngIf="error">
+          {{ error }}
+        </p>
+        <button mat-raised-button class="smaller block" color="primary" type="submit">Save</button>
+      </form>
+    </div>
+    <div>
+      <button mat-raised-button class="block" color="primary" (click)="startGame()"
+        *ngIf="numberOfEntries() > 0">Enough</button>
+    </div>
+  </div>
+</div>

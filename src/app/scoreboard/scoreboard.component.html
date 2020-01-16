@@ -1,0 +1,25 @@
+<div class="content-container">
+  <h1>End of round {{ currentRound + 1 }}</h1>
+
+  <table class="scores">
+    <tr>
+      <th></th>
+      <th *ngFor="let team of scores[0]; let i = index">
+        Team {{ i + 1 }}
+      </th>
+    </tr>
+    <tr *ngFor="let round of scores; let i = index">
+      <td><strong>Round {{ i + 1 }}</strong></td>
+      <td *ngFor="let score of round">
+        {{ score != null ? score : '-' }}
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Total</strong></td>
+      <td *ngFor="let total of totals">{{ total }}</td>
+    </tr>
+  </table>
+
+  <button mat-raised-button color="primary"
+    (click)="nextRound()">{{ isLastRound() ? 'End game' : 'Next round' }}</button>
+</div>

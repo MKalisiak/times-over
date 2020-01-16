@@ -1,0 +1,48 @@
+<ng-template [ngIf]="activeMode === mode.WAITING_FOR_READY">
+  <div class="content-container">
+    <h1>Round {{ currentRound + 1 }}</h1>
+    <h2>Now playing Team {{ activeTeam + 1 }}</h2>
+    <h3>Entries left: {{ entriesLeft() }}</h3>
+    <button mat-raised-button color="primary" (click)="ready()">Ready</button>
+  </div>
+</ng-template>
+
+<ng-template [ngIf]="activeMode === mode.PLAYING">
+  <div class="game-container">
+    <div class="timer">{{ viewSecondsLeft }}</div>
+
+    <h1 class="entry">{{ currentEntry }}</h1>
+
+    <div>
+      <button mat-fab class="confirm-button" (click)="guess()">
+        <mat-icon class="label">done</mat-icon>
+      </button>
+
+      <button mat-fab class="skip-button" (click)="skip()">
+        <mat-icon class="label">clear</mat-icon>
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template [ngIf]="activeMode === mode.TURN_SUMMARY">
+  <div class="content-container">
+    <h1>End of Team {{ activeTeam + 1 }} turn</h1>
+
+    <div class="table-like">
+      <div class="row-like" *ngFor="let entry of usedEntries">
+        <span class="entry">{{ entry.entry }}</span>
+
+        <button mat-fab class="confirm-button tiny" (click)="toggleUsedEntryGuessedState(entry)" *ngIf="entry.guessed">
+          <mat-icon class="label">done</mat-icon>
+        </button>
+
+        <button mat-fab class="skip-button tiny" (click)="toggleUsedEntryGuessedState(entry)" *ngIf="!entry.guessed">
+          <mat-icon class="label">clear</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <button mat-raised-button color="primary" (click)="closeSummary()">End turn</button>
+  </div>
+</ng-template>

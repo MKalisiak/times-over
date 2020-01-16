@@ -1,0 +1,30 @@
+<div class="content-container">
+  <h1>Settings</h1>
+
+  <div class="menu-list">
+    <div>
+      <form [formGroup]="settingsForm">
+        <mat-form-field>
+          <input matInput id="numberOfTeams" type="number" formControlName="numberOfTeams"
+            placeholder="Number of teams">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput id="numberOfRounds" type="number" formControlName="numberOfRounds"
+            placeholder="Number of rounds">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput id="secondsPerTry" type="number" formControlName="secondsPerTry"
+            placeholder="Seconds per try">
+        </mat-form-field>
+        <!-- <mat-form-field>
+      <input matInput id="secondsSubstractedForSkip" type="number" formControlName="secondsSubstractedForSkip" placeholder="Seconds lost for skipping">
+    </mat-form-field> -->
+      </form>
+    </div>
+    <div>
+      <a routerLink="/">
+        <button mat-raised-button class="smaller" color="primary">Home</button>
+      </a>
+    </div>
+  </div>
+</div>

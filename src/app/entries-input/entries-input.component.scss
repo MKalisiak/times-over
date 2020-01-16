@@ -1,0 +1,15 @@
+.content-container {
+  padding-top: 20%;
+  height: 100%;
+  position: relative;
+
+  .menu-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    div {
+      margin-bottom: 20px;
+    }
+  }
+}
