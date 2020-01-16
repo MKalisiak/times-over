@@ -14,6 +14,8 @@ export const defaultSettings: Settings = {
   secondsSubstractedForSkip: 0
 };
 
+const LOCAL_STORAGE_SETTINGS_KEY = 'times-over-game-settings';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -30,11 +32,11 @@ export class SettingsService {
   }
 
   setSettings(settings: Settings): void {
-    localStorage.setItem('settings', JSON.stringify(settings));
+    localStorage.setItem(LOCAL_STORAGE_SETTINGS_KEY, JSON.stringify(settings));
     this.settings = settings;
   }
 
   fetchSettings(): Settings {
-    return JSON.parse(localStorage.getItem('settings'));
+    return JSON.parse(localStorage.getItem(LOCAL_STORAGE_SETTINGS_KEY));
   }
 }
