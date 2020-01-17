@@ -26,7 +26,7 @@
 </ng-template>
 
 <ng-template [ngIf]="activeMode === mode.TURN_SUMMARY">
-  <div class="content-container">
+  <div class="content-container scores">
     <h1>End of Team {{ activeTeam + 1 }} turn</h1>
 
     <div class="table-like">
@@ -43,6 +43,6 @@
       </div>
     </div>
 
-    <button mat-raised-button color="primary" (click)="closeSummary()">End turn</button>
+    <button mat-raised-button color="primary" class="end-turn-button" (click)="closeSummary()">End turn</button>
   </div>
 </ng-template>
