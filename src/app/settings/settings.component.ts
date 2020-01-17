@@ -26,6 +26,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
     });
 
     this.settingsValueChangesSub = this.settingsForm.valueChanges.subscribe((newSettings: Settings) => {
+      newSettings = this.settingsService.validateSettings(newSettings);
       this.settingsService.setSettings(newSettings);
     });
   }
