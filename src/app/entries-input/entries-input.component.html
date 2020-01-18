@@ -5,7 +5,8 @@
 
   <div class="menu-list">
     <div>
-      <form [formGroup]="entryForm" (ngSubmit)="saveEntry()">
+      <form [formGroup]="entryForm" (ngSubmit)="saveEntry()" autocomplete="off">
+        <input autocomplete="false" name="hidden" type="text" style="display:none;">
         <mat-form-field>
           <input matInput type="text" formControlName="entry">
         </mat-form-field>

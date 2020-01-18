@@ -16,6 +16,14 @@
           <input matInput id="secondsPerTry" type="number" formControlName="secondsPerTry"
             placeholder="Seconds per try">
         </mat-form-field>
+        <mat-form-field>
+          <mat-label>Duplicate policy</mat-label>
+          <mat-select [formControlName]="'duplicatePolicy'">
+            <mat-option *ngFor="let policy of duplicatePolicyView" [value]="policy.value">
+              {{ policy.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
         <!-- <mat-form-field>
       <input matInput id="secondsSubstractedForSkip" type="number" formControlName="secondsSubstractedForSkip" placeholder="Seconds lost for skipping">
     </mat-form-field> -->

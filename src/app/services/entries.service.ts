@@ -19,4 +19,8 @@ export class EntriesService {
   public addEntry(entry: string) {
     this.entries.push(entry);
   }
+
+  removeDuplicates() {
+    this.entries = [...new Set(this.entries)];
+  }
 }

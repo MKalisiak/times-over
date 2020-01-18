@@ -1,3 +1,4 @@
+import { DuplicatePolicy, SettingsService } from './../services/settings.service';
 import { GameService } from './../services/game.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { EntriesService } from './../services/entries.service';
@@ -13,12 +14,14 @@ export class EntriesInputComponent implements OnInit {
 
   entryForm: FormGroup;
   error: string;
+  duplicatePolicy: DuplicatePolicy;
 
   constructor(
     private formBuilder: FormBuilder,
     private entriesService: EntriesService,
     private router: Router,
-    private gameService: GameService
+    private gameService: GameService,
+    private settingsService: SettingsService
   ) { }
 
   ngOnInit() {
@@ -27,6 +30,7 @@ export class EntriesInputComponent implements OnInit {
     });
 
     this.entriesService.clear();
+    this.duplicatePolicy = this.settingsService.settings.duplicatePolicy;
   }
 
   saveEntry(): void {
@@ -34,7 +38,7 @@ export class EntriesInputComponent implements OnInit {
 
     if (entry) {
       this.entryForm.get('entry').patchValue(entry);
-      if (this.entriesService.includesEntry(entry)) {
+      if (this.duplicatePolicy === DuplicatePolicy.DONT_ALLOW && this.entriesService.includesEntry(entry)) {
         this.error = 'Tough tittes, try something else';
       } else {
         this.entriesService.addEntry(entry);
@@ -49,6 +53,9 @@ export class EntriesInputComponent implements OnInit {
   }
 
   startGame(): void {
+    if (this.duplicatePolicy === DuplicatePolicy.REMOVE_SILENTLY) {
+      this.entriesService.removeDuplicates();
+    }
     this.gameService.initGame();
     this.router.navigateByUrl('/game');
   }
