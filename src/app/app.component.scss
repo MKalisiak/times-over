@@ -9,7 +9,7 @@
 }
 
 .triangle {
-  $size: 30%;
+  $size: 20%;
   $offset-left: 20%;
   $offset-right: 20%;
   width: $size;
@@ -19,7 +19,7 @@
   position: absolute;
 
   &.big {
-    $size-big: 40%;
+    $size-big: 30%;
     width: $size-big;
     padding-top: $size-big;
   }

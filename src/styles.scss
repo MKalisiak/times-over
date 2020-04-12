@@ -62,3 +62,28 @@ body {
 .mat-fab .mat-button-wrapper {
   padding: 0 !important;
 }
+
+@import 'styles/colors.scss';
+
+.times-over-button {
+  background-color: $times-over-blue;
+  width: 200px;
+  height: 60px;
+  font-size: 20pt;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: white;
+  border: 2px solid $times-over-blue;
+  border-radius: 25px;
+
+  &.icon {
+    background-color: white;
+    color: $dark-gray;
+    width: 60px;
+    border-color: white;
+
+    i {
+      font-size: 24pt;
+    }
+  }
+}

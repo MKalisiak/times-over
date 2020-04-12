@@ -1,19 +1,51 @@
 <div class="content-container">
 
-  <h1>Time's over</h1>
+  <h1>
+    <svg class="logo" data-name="Component 2 – 1" viewBox="0 0 350 98.895" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(128 5)" data-name="Group 2">
+        <g fill="none" data-name="Path 2">
+          <path d="M46.947,0A46.947,46.947,0,1,1,0,46.947,46.947,46.947,0,0,1,46.947,0Z" />
+          <path
+            d="m46.947 7c-22.027 0-39.947 17.92-39.947 39.947 0 22.027 17.92 39.947 39.947 39.947 22.027 0 39.947-17.92 39.947-39.947 0-22.027-17.92-39.947-39.947-39.947m0-7c25.928 0 46.947 21.019 46.947 46.947s-21.019 46.947-46.947 46.947-46.947-21.019-46.947-46.947 21.019-46.947 46.947-46.947z"
+            fill="#4c9ff2" />
+        </g>
+        <path transform="translate(-19.09)" d="M40.889,1.919,61.929,0V23.474H41.487L21.863,5.8Z" fill="#f3f3f9"
+          data-name="Path 3" />
+        <line transform="translate(46.35 6.455)" y2="14.084" fill="none" stroke="#4c9ff2" stroke-width="7"
+          data-name="Line 1" />
+        <path transform="translate(36.351 36.341)" d="M-13.706-13.766,10.6,2.391A8.216,8.216,0,1,1,2.38,10.607Z"
+          fill="#8b8b8b" data-name="Path 1" />
+      </g>
+      <text transform="translate(289 73)" fill="#8b8b8b" font-family="Montserrat-Medium, Montserrat" font-size="75"
+        font-weight="500" letter-spacing=".03em">
+        <tspan x="-60.975" y="0">ver</tspan>
+      </text>
+      <text transform="translate(0 62)" fill="#8b8b8b" font-family="Montserrat-Regular, Montserrat" font-size="30"
+        letter-spacing=".1em" data-name="time's">
+        <tspan x="0" y="0">Time's</tspan>
+      </text>
+    </svg>
+
+  </h1>
 
   <div class="menu-list">
     <div>
       <a routerLink="/entries">
-        <button mat-raised-button color="primary">
-          Play
+        <button class="times-over-button">
+          PLAY
         </button>
       </a>
     </div>
-    <div>
+    <div class="secondary-row">
       <a routerLink="/settings">
-        <button mat-raised-button color="primary">
-          Settings
+        <button class="times-over-button icon">
+          <i class="fas fa-cog"></i>
+        </button>
+      </a>
+
+      <a routerLink="/credits">
+        <button class="times-over-button icon">
+          <i class="fas fa-user-tie"></i>
         </button>
       </a>
     </div>

@@ -4,9 +4,14 @@
   position: relative;
   box-sizing: border-box;
 
+  .logo {
+    width: 100%;
+    height: auto;
+  }
+
   .menu-list {
     position: absolute;
-    top: 50%;
+    top: 70%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
@@ -17,6 +22,13 @@
 
     div {
       margin-bottom: 20px;
+    }
+
+    .secondary-row {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      justify-content: space-around;
     }
   }
 }
