@@ -1,6 +1,80 @@
+@import 'styles/colors.scss';
+
 .main-container {
   width: 100vw;
-  height: 90vh;
+  height: 100vh;
   padding: 10% 5%;
   box-sizing: border-box;
+  background-color: $background-gray;
 }
+
+.triangle {
+  $size: 30%;
+  $offset-left: 20%;
+  $offset-right: 20%;
+  width: $size;
+  padding-top: $size;
+  transform-origin: center;
+  transform: rotate(45deg);
+  position: absolute;
+
+  &.big {
+    $size-big: 40%;
+    width: $size-big;
+    padding-top: $size-big;
+  }
+
+  &.blue {
+    background-color: $times-over-blue;
+  }
+
+  &.white {
+    background-color: white;
+  }
+
+  &.top {
+    transform: translateY(-50%) rotate(45deg);
+    top: 0;
+
+    &.left {
+      transform: translateX(-50%) translateY(-50%) rotate(45deg);
+      left: $offset-left;
+    }
+
+    &.right {
+      transform: translateX(50%) translateY(-50%) rotate(45deg);
+      right: $offset-right;
+    }
+
+    &.center {
+      transform: translateX(-50%) translateY(-50%) rotate(45deg);
+      left: 50%;
+    }
+  }
+
+  &.bottom {
+    transform: translateY(50%) rotate(45deg);
+    bottom: 0;
+
+    &.left {
+      transform: translateX(-50%) translateY(50%) rotate(45deg);
+      left: $offset-left;
+    }
+
+    &.right {
+      transform: translateX(50%) translateY(50%) rotate(45deg);
+      right: $offset-right;
+    }
+
+    &.center {
+      transform: translateX(-50%) translateY(50%) rotate(45deg);
+      left: 50%;
+    }
+  }
+
+  &.front {
+    z-index: 1;
+  }
+
+}
+
