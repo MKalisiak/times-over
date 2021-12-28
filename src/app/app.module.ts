@@ -1,3 +1,4 @@
+import { ClearConfirmationDialogComponent } from './entries-input/clear-confirmation-dialog/clear-confirmation-dialog.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,6 +18,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSelectModule} from '@angular/material/select';
+import { STORAGE } from 'src/infrastructure/storage';
+import { MatDialogModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,8 @@ import {MatSelectModule} from '@angular/material/select';
     HomeComponent,
     ScoreboardComponent,
     EntriesInputComponent,
-    MainGameComponent
+    MainGameComponent,
+    ClearConfirmationDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -39,9 +43,18 @@ import {MatSelectModule} from '@angular/material/select';
     MatIconModule,
     MatInputModule,
     MatGridListModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDialogModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: STORAGE,
+      useValue: localStorage,
+    }
+  ],
+  entryComponents: [
+    ClearConfirmationDialogComponent,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
