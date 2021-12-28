@@ -42,6 +42,7 @@ export class GameService {
     this.activeTeamIndex = 0;
     this.currentRound = 0;
     this.initEntries();
+
     this.entriesUsed = [];
   }
 
@@ -59,6 +60,7 @@ export class GameService {
   initNextRound(): void {
     this.currentRound += 1;
     if (this.currentRound >= this.settings.numberOfRounds) {
+      this.entriesService.clear();
       throw(new Error('Game ended'));
     }
     this.initEntries();
