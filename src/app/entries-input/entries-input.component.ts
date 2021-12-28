@@ -1,9 +1,12 @@
+import { filter, tap } from 'rxjs/operators';
 import { DuplicatePolicy, SettingsService } from './../services/settings.service';
 import { GameService } from './../services/game.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { EntriesService } from './../services/entries.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { ClearConfirmationDialogComponent } from './clear-confirmation-dialog/clear-confirmation-dialog.component';
 
 @Component({
   selector: 'app-entries-input',
@@ -21,7 +24,8 @@ export class EntriesInputComponent implements OnInit {
     private entriesService: EntriesService,
     private router: Router,
     private gameService: GameService,
-    private settingsService: SettingsService
+    private settingsService: SettingsService,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit() {
@@ -29,7 +33,6 @@ export class EntriesInputComponent implements OnInit {
       entry: ''
     });
 
-    this.entriesService.clear();
     this.duplicatePolicy = this.settingsService.settings.duplicatePolicy;
   }
 
@@ -58,6 +61,14 @@ export class EntriesInputComponent implements OnInit {
     }
     this.gameService.initGame();
     this.router.navigateByUrl('/game');
+  }
+
+  onClearClicked(): void {
+    const dialogRef = this.dialog.open(ClearConfirmationDialogComponent);
+    dialogRef.afterClosed().pipe(
+      filter(result => !!result),
+      tap(() => this.entriesService.clear())
+    ).subscribe();
   }
 
 }

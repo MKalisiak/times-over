@@ -17,8 +17,10 @@
       </form>
     </div>
     <div>
-      <button mat-raised-button class="block" color="primary" (click)="startGame()"
+      <button mat-raised-button class="d-block mb-10" color="primary" (click)="startGame()"
         *ngIf="numberOfEntries() > 0">Enough</button>
+      <button mat-raised-button class="smaller block" color="warn" (click)="onClearClicked()"
+        *ngIf="numberOfEntries() > 0">Clear</button>
     </div>
   </div>
 </div>
