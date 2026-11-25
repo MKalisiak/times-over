@@ -5,8 +5,8 @@
   <table class="scores">
     <tr>
       <th></th>
-      <th *ngFor="let team of scores[0]; let i = index">
-        Team {{ i + 1 }}
+      <th *ngFor="let name of teamNames">
+        {{ name }}
       </th>
     </tr>
     <tr *ngFor="let round of scores; let i = index">

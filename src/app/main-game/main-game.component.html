@@ -1,7 +1,7 @@
 <main *ngIf="activeMode === mode.WAITING_FOR_READY" class="poster">
   <section class="card ticket">
     <div class="eyebrow">Round {{ currentRound + 1 }}</div>
-    <h1 class="team">Team {{ activeTeam + 1 }}</h1>
+    <h1 class="team">{{ activeTeamName }}</h1>
     <div>Now playing</div>
     <hr>
     <div class="counter"><span class="eyebrow">Entries left</span><span class="num">{{ entriesLeft() }}</span></div>
@@ -15,7 +15,7 @@
   <button class="peach" (click)="skip()"><span aria-hidden="true">×　</span>Skip</button>
 </main>
 <main *ngIf="activeMode === mode.TURN_SUMMARY">
-  <h1 class="top">End of Team {{ activeTeam + 1 }} turn</h1>
+  <h1 class="top">End of turn · {{ activeTeamName }}</h1>
   <div class="card">
     <div class="listrow" *ngFor="let entry of usedEntries">
       <span>{{ entry.entry }}</span>

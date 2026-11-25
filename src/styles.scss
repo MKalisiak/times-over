@@ -526,3 +526,11 @@ input,.field {
   .top { margin-top: 24px; }
   .timer { margin-top: 16px; }
 }
+
+.team, app-main-game h1.top {
+  overflow-wrap: anywhere;
+}
+
+.scores th {
+  text-transform: none;
+}

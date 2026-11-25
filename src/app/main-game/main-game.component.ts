@@ -20,7 +20,6 @@ export class MainGameComponent implements OnInit, OnDestroy {
   activeMode = Mode.WAITING_FOR_READY;
   mode = Mode;
   milisLeft: number;
-  activeTeam: number;
   currentRound: number;
   usedEntries: Array<UsedEntry>;
 
@@ -35,12 +34,15 @@ export class MainGameComponent implements OnInit, OnDestroy {
     private router: Router
   ) { }
 
+  get activeTeamName(): string {
+    return this.gameService.getActiveTeamName();
+  }
+
   ngOnInit() {
     this.currentEntrySub = this.gameService.currentEntry.pipe(filter(x => !isNullOrUndefined(x))).subscribe(newEntry => {
       this.currentEntry = newEntry;
     });
     this.milisLeft = this.gameService.settings.secondsPerTry * 1000;
-    this.activeTeam = this.gameService.activeTeamIndex;
     this.currentRound = this.gameService.currentRound;
   }
 
@@ -92,7 +94,6 @@ export class MainGameComponent implements OnInit, OnDestroy {
     this.gameService.initNextTurn();
     if (this.gameService.hasEntries()) {
       this.activeMode = Mode.WAITING_FOR_READY;
-      this.activeTeam = this.gameService.activeTeamIndex;
     } else {
       this.finishRound();
     }

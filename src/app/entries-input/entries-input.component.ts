@@ -1,6 +1,5 @@
 import { filter, tap } from 'rxjs/operators';
 import { DuplicatePolicy, SettingsService } from './../services/settings.service';
-import { GameService } from './../services/game.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { EntriesService } from './../services/entries.service';
 import { Component, OnInit } from '@angular/core';
@@ -22,7 +21,6 @@ export class EntriesInputComponent implements OnInit {
     private formBuilder: FormBuilder,
     private entriesService: EntriesService,
     private router: Router,
-    private gameService: GameService,
     private settingsService: SettingsService,
     private dialog: MatDialog,
   ) { }
@@ -54,12 +52,8 @@ export class EntriesInputComponent implements OnInit {
     return this.entriesService.entries.length;
   }
 
-  startGame(): void {
-    if (this.duplicatePolicy === DuplicatePolicy.REMOVE_SILENTLY) {
-      this.entriesService.removeDuplicates();
-    }
-    this.gameService.initGame();
-    this.router.navigateByUrl('/game');
+  continueToTeams(): void {
+    this.router.navigateByUrl('/team-names');
   }
 
   onClearClicked(): void {
