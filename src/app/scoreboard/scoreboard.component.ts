@@ -29,8 +29,8 @@ export class ScoreboardComponent implements OnInit {
       }
     });
 
-    this.totals = new Array(this.gameService.settings.numberOfTeams);
-    for (let i = 0; i < this.gameService.settings.numberOfTeams; i++) {
+    this.totals = new Array(this.teamNames.length);
+    for (let i = 0; i < this.teamNames.length; i++) {
       let sum = 0;
       this.scores.forEach(round => {
         sum += round[i];

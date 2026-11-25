@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { EntriesService } from './entries.service';
-import { Settings, SettingsService } from './settings.service';
+import { DuplicatePolicy, Settings, SettingsService } from './settings.service';
 
 export interface UsedEntry {
   entry: string;
@@ -15,7 +15,7 @@ export class GameService {
 
   teamNames: string[];
   scores: Array<Array<number>>;
-  activeTeamIndex: number;
+  private activeTeamIndex: number;
   currentRound: number;
   entriesLeft: Array<string>;
 
@@ -34,12 +34,19 @@ export class GameService {
     this.currentEntry = this.currentEntry$.asObservable();
   }
 
+  getActiveTeamName(): string {
+    return this.teamNames[this.activeTeamIndex];
+  }
+
   initGame(teamNames: string[]): void {
     this.teamNames = teamNames;
     this.settings = this.settingsService.settings;
+    if (this.settings.duplicatePolicy === DuplicatePolicy.REMOVE_SILENTLY) {
+      this.entriesService.removeDuplicates();
+    }
     this.scores = new Array(this.settings.numberOfRounds);
     for (let i = 0; i < this.settings.numberOfRounds; i++) {
-      this.scores[i] = new Array(this.settings.numberOfTeams).fill(null);
+      this.scores[i] = new Array(this.teamNames.length).fill(null);
     }
     this.activeTeamIndex = 0;
     this.currentRound = 0;
@@ -54,7 +61,7 @@ export class GameService {
 
   initNextTurn(): void {
     this.scores[this.currentRound][this.activeTeamIndex] += this.entriesUsed.filter(entry => entry.guessed === true).length;
-    this.activeTeamIndex = (this.activeTeamIndex + 1) % this.settings.numberOfTeams;
+    this.activeTeamIndex = (this.activeTeamIndex + 1) % this.teamNames.length;
     this.returnEntries(this.entriesUsed.filter(entry => entry.guessed === false));
     this.entriesUsed = [];
   }

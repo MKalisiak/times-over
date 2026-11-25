@@ -35,7 +35,7 @@ export class MainGameComponent implements OnInit, OnDestroy {
   ) { }
 
   get activeTeamName(): string {
-    return this.gameService.teamNames[this.gameService.activeTeamIndex];
+    return this.gameService.getActiveTeamName();
   }
 
   ngOnInit() {

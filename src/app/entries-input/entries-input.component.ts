@@ -53,9 +53,6 @@ export class EntriesInputComponent implements OnInit {
   }
 
   continueToTeams(): void {
-    if (this.duplicatePolicy === DuplicatePolicy.REMOVE_SILENTLY) {
-      this.entriesService.removeDuplicates();
-    }
     this.router.navigateByUrl('/team-names');
   }
 
