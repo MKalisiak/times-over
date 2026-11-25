@@ -26,39 +26,503 @@ $times-over-theme: mat-light-theme($times-over-primary, $times-over-accent, $tim
 // that you are using.
 @include angular-material-theme($times-over-theme);
 
-$primary: mat-color($times-over-primary);
-$accent: mat-color($times-over-accent);
 
-/* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+}
 
-html, body { height: 100%; }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  text-align: center;
+  color: #23283e;
+  background: #f6f1e5;
+  font: 17px "Open Sans",sans-serif;
+}
+
+main {
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 62px 24px 28px;
+  width: 100%;
+  max-width: 540px;
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: visible;
 }
 
-.mat-raised-button {
-  min-width: 128px !important;
-  line-height: 50px !important;
-  height: 50px !important;
-  font-size: larger !important;
-
-  &.smaller {
-    min-width: 96px !important;
-    line-height: 38px !important;
-    height: 38px !important;
-    font-size: large !important;
-  }
-
+.brand {
+  position: absolute;
+  z-index: 1;
+  top: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 48px);
+  max-width: 492px;
+  height: 40px;
+  border-bottom: 2px solid;
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-weight: 800;
+  font-size: 16px;
 }
 
-.block {
-  display: block !important;
-  margin: auto !important;
+.brand img {
+  width: 22px;
+  height: 22px;
 }
 
-.mat-fab .mat-button-wrapper {
-  padding: 0 !important;
+.eyebrow,label,th,.tag {
+  font: 700 12px 'DejaVu Sans Mono',monospace;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+}
+
+h1,h2,.word {
+  font-family: 'DejaVu Serif',serif;
+  letter-spacing: -2.8px;
+  line-height: 1.04;
+  margin: 12px 0 25px;
+}
+
+h1 {
+  font-size: 45px;
+}
+
+h2 {
+  font-size: 31px;
+  letter-spacing: -1.6px;
+}
+
+.top {
+  margin-top: 44px;
+}
+
+.push {
+  margin-top: auto;
+  padding-top: 24px;
+}
+
+button,.action {
+  border: 2px solid #23283e;
+  border-radius: 12px;
+  min-height: 54px;
+  padding: 10px 18px;
+  color: inherit;
+  background: transparent;
+  font: 700 17px 'Open Sans',sans-serif;
+  width: 100%;
+}
+
+button+button,.action+.action {
+  margin-top: 12px;
+}
+
+.primary {
+  background: #283449;
+  color: white;
+  box-shadow: 0 3px 0 #101222;
+}
+
+.alt {
+  background: #ffb79f;
+}
+
+.link {
+  border: none;
+  color: #793f35;
+}
+
+.input,.field {
+  border: 1.5px solid #656878;
+  border-radius: 9px;
+  background: #fffdf6;
+  padding: 14px 16px;
+  margin: 8px 0 22px;
+  min-height: 54px;
+}
+
+.field {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.select {
+  font-size: 17px;
+}
+
+.card {
+  border: 2px solid;
+  border-radius: 18px;
+  background: #fffdf5;
+  box-shadow: 4px 5px 0 #23283e;
+  padding: 22px;
+}
+
+.counter {
+  margin: 6px 0 27px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed #8f8b81;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.num {
+  font: 700 32px 'DejaVu Serif',serif;
+}
+
+.input {
+  height: 58px;
+  margin: 10px 0 14px;
+}
+
+.error {
+  color: #973c30;
+  font-weight: 600;
+  font-size: 14px;
+  margin: -4px 0 14px;
+}
+
+.invalid {
+  border: 2px solid #aa493e;
+}
+
+.pair {
+  display: flex;
+  gap: 12px;
+}
+
+.pair button {
+  margin: 0;
+}
+
+.hero {
+  background: #bde0c9;
+}
+
+.poster {
+  background: #ffb79f;
+}
+
+.dark {
+  background: #243147;
+  color: #fffaf0;
+}
+
+.dark .card {
+  color: #23283e;
+}
+
+.stack {
+  position: relative;
+  flex: 1;
+  display: grid;
+  place-items: center;
+  margin: 18px 0 27px;
+}
+
+.sheet {
+  position: absolute;
+  width: 180px;
+  height: 233px;
+  border-radius: 16px;
+  border: 2.5px solid #23283e;
+}
+
+.back {
+  background: #fbbb9f;
+  transform: rotate(-16deg) translateX(-24px);
+}
+
+.mid {
+  background: #afbde9;
+  transform: rotate(13deg) translateX(18px);
+}
+
+.front {
+  background: #fff6dd;
+  transform: rotate(-3deg);
+  display: grid;
+  place-items: center;
+  box-shadow: 3px 4px #23283e;
+}
+
+.front:before,.front:after {
+  content: '✦';
+  position: absolute;
+  font-size: 20px;
+}
+
+.front:before {
+  left: 14px;
+  top: 9px;
+}
+
+.front:after {
+  right: 14px;
+  bottom: 9px;
+}
+
+.front img {
+  width: 84px;
+  height: 105px;
+}
+
+.title {
+  font-size: 70px;
+  line-height: .90;
+  margin: 12px 0 22px;
+  letter-spacing: -5px;
+}
+
+.title i {
+  font-weight: 400;
+}
+
+.team {
+  font-size: 69px;
+  margin: 10px 0 18px;
+}
+
+.ticket {
+  margin: auto 0;
+  padding: 30px 22px;
+}
+
+.ticket hr {
+  border: 0;
+  border-top: 2px dashed #afa99b;
+  margin: 30px -22px;
+}
+
+.timer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 36px 0 0;
+}
+
+.timer strong {
+  font: 700 38px 'DejaVu Sans Mono',monospace;
+}
+
+.wordcard {
+  margin: auto 0;
+  background: #ffe7bf;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 260px;
+  position: relative;
+}
+
+.wordcard:before,.wordcard:after {
+  content: '✦';
+  position: absolute;
+  font-size: 24px;
+}
+
+.wordcard:before {
+  top: 14px;
+  left: 17px;
+}
+
+.wordcard:after {
+  bottom: 14px;
+  right: 17px;
+}
+
+.word {
+  font-size: 46px;
+  overflow-wrap: anywhere;
+  margin: 0;
+}
+
+.green {
+  background: #ade3c2;
+  color: #192f28;
+}
+
+.peach {
+  background: #ffb99e;
+  color: #39241d;
+}
+
+.listrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 15px 0;
+  border-bottom: 1px dashed #908f85;
+  font-weight: 700;
+}
+
+.state {
+  font-size: 13px;
+  padding: 10px;
+  border: 1px solid;
+  border-radius: 9px;
+}
+
+.scores {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 17px;
+}
+
+.scores th,.scores td {
+  text-align: right;
+  padding: 14px 5px;
+  border-bottom: 1px dashed #939387;
+}
+
+.scores th:first-child,.scores td:first-child {
+  text-align: left;
+}
+
+.scores th {
+  font-size: 10px;
+}
+
+.scores tr:last-child {
+  background: #d8e8cd;
+  font-weight: 800;
+}
+
+.scores tr:last-child td {
+  border: 0;
+}
+
+.scores td:first-child {
+  padding-left: 8px;
+}
+
+.dark button.green {
+  min-height: 72px;
+}
+
+.dark button.peach {
+  margin-top: 24px;
+}
+
+.brand {
+  pointer-events: none;
+}
+
+body:has(.hero) {
+  background: #bde0c9;
+}
+
+body:has(.poster) {
+  background: #ffb79f;
+}
+
+body:has(.dark) {
+  background: #243147;
+}
+
+app-root:has(.dark) .brand {
+  color: #fffaf0;
+}
+
+.action {
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+}
+
+button,.action {
+  cursor: pointer;
+}
+
+input,.field {
+  display: block;
+  width: 100%;
+  color: inherit;
+  font-family: inherit;
+}
+
+.input {
+  font-size: 18px;
+  width: 100%;
+}
+
+.stack {
+  min-height: 280px;
+}
+
+.ticket .counter {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.wordcard {
+  margin-block: auto;
+  overflow-wrap: anywhere;
+}
+
+.wordcard .word {
+  padding-block: 18px;
+}
+
+.timer {
+  margin-bottom: 20px;
+}
+
+.dark .green {
+  margin-top: 20px;
+}
+
+.state {
+  min-height: 44px;
+  width: auto;
+  flex-shrink: 0;
+}
+
+.listrow span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.score-scroll {
+  overflow-x: auto;
+}
+
+:focus-visible {
+  outline: 3px solid #875400;
+  outline-offset: 3px;
+}
+
+.policy-options.mat-select-panel,.clear-dialog .mat-dialog-container {
+  border: 2px solid #23283e;
+  border-radius: 14px;
+  background: #fffaf0;
+  color: #23283e;
+  box-shadow: 4px 5px #23283e;
+}
+
+.policy-options .mat-option.mat-selected {
+  background: #d5e6d4;
+  color: #23283e;
+}
+
+.policy-options .mat-selected .mat-option-text:before {
+  content: '✓　';
+}
+
+.clear-dialog .mat-dialog-title {
+  font: 700 31px/1.06 'DejaVu Serif',serif;
+  letter-spacing: -1.6px;
+}
+
+@media (max-height: 680px) {
+  .wordcard { min-height: 160px; }
+  .top { margin-top: 24px; }
+  .timer { margin-top: 16px; }
 }

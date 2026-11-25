@@ -1,26 +1,15 @@
-<div class="content-container">
-  <h1>Type in your entries:</h1>
-
-  <h2>You have {{ numberOfEntries() }} entries</h2>
-
-  <div class="menu-list">
-    <div>
-      <form [formGroup]="entryForm" (ngSubmit)="saveEntry()" autocomplete="off">
-        <input autocomplete="false" name="hidden" type="text" style="display:none;">
-        <mat-form-field>
-          <input matInput type="text" formControlName="entry">
-        </mat-form-field>
-        <p *ngIf="error">
-          {{ error }}
-        </p>
-        <button mat-raised-button class="smaller block" color="primary" type="submit">Save</button>
-      </form>
-    </div>
-    <div>
-      <button mat-raised-button class="d-block mb-10" color="primary" (click)="startGame()"
-        *ngIf="numberOfEntries() > 0">Enough</button>
-      <button mat-raised-button class="smaller block" color="warn" (click)="onClearClicked()"
-        *ngIf="numberOfEntries() > 0">Clear</button>
-    </div>
+<main>
+  <h1 class="top">Type in your<br>entries</h1>
+  <form class="card" [formGroup]="entryForm" (ngSubmit)="saveEntry()" autocomplete="off">
+    <div class="counter"><span class="eyebrow">Entries</span><span class="num">{{ numberOfEntries() }}</span></div>
+    <label for="entry">Your entry</label>
+    <input class="input" id="entry" formControlName="entry" [class.invalid]="error"
+           [attr.aria-invalid]="!!error" [attr.aria-describedby]="error ? 'entry-error' : null">
+    <p class="error" id="entry-error" role="alert" *ngIf="error">{{ error }}</p>
+    <button class="primary" type="submit">Save</button>
+  </form>
+  <div class="push" *ngIf="numberOfEntries() > 0">
+    <button class="alt" (click)="startGame()">Enough</button>
+    <button class="link" (click)="onClearClicked()">Clear</button>
   </div>
-</div>
+</main>

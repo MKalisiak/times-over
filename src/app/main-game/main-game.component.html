@@ -1,48 +1,30 @@
-<ng-template [ngIf]="activeMode === mode.WAITING_FOR_READY">
-  <div class="content-container">
-    <h1>Round {{ currentRound + 1 }}</h1>
-    <h2>Now playing Team {{ activeTeam + 1 }}</h2>
-    <h3>Entries left: {{ entriesLeft() }}</h3>
-    <button mat-raised-button color="primary" (click)="ready()">Ready</button>
-  </div>
-</ng-template>
-
-<ng-template [ngIf]="activeMode === mode.PLAYING">
-  <div class="game-container">
-    <div class="timer">{{ viewSecondsLeft }}</div>
-
-    <h1 class="entry">{{ currentEntry }}</h1>
-
-    <div>
-      <button mat-fab class="confirm-button" (click)="guess()">
-        <mat-icon class="label">done</mat-icon>
-      </button>
-
-      <button mat-fab class="skip-button" (click)="skip()">
-        <mat-icon class="label">clear</mat-icon>
+<main *ngIf="activeMode === mode.WAITING_FOR_READY" class="poster">
+  <section class="card ticket">
+    <div class="eyebrow">Round {{ currentRound + 1 }}</div>
+    <h1 class="team">Team {{ activeTeam + 1 }}</h1>
+    <div>Now playing</div>
+    <hr>
+    <div class="counter"><span class="eyebrow">Entries left</span><span class="num">{{ entriesLeft() }}</span></div>
+  </section>
+  <button class="primary" (click)="ready()">Ready</button>
+</main>
+<main *ngIf="activeMode === mode.PLAYING" class="dark">
+  <div class="timer"><span class="eyebrow">Time left</span><strong>{{ viewSecondsLeft }} s</strong></div>
+  <section class="card wordcard"><h1 class="word">{{ currentEntry }}</h1></section>
+  <button class="green" (click)="guess()"><span aria-hidden="true">✓　</span>Guessed</button>
+  <button class="peach" (click)="skip()"><span aria-hidden="true">×　</span>Skip</button>
+</main>
+<main *ngIf="activeMode === mode.TURN_SUMMARY">
+  <h1 class="top">End of Team {{ activeTeam + 1 }} turn</h1>
+  <div class="card">
+    <div class="listrow" *ngFor="let entry of usedEntries">
+      <span>{{ entry.entry }}</span>
+      <button class="state" [class.green]="entry.guessed" [class.peach]="!entry.guessed"
+              [attr.aria-label]="'Guessed: ' + entry.entry" [attr.aria-pressed]="entry.guessed"
+              (click)="toggleUsedEntryGuessedState(entry)">
+        {{ entry.guessed ? '✓ Guessed' : '× Skipped' }}
       </button>
     </div>
   </div>
-</ng-template>
-
-<ng-template [ngIf]="activeMode === mode.TURN_SUMMARY">
-  <div class="content-container scores">
-    <h1>End of Team {{ activeTeam + 1 }} turn</h1>
-
-    <div class="table-like">
-      <div class="row-like" *ngFor="let entry of usedEntries">
-        <span class="entry">{{ entry.entry }}</span>
-
-        <button mat-fab class="confirm-button tiny" (click)="toggleUsedEntryGuessedState(entry)" *ngIf="entry.guessed">
-          <mat-icon class="label">done</mat-icon>
-        </button>
-
-        <button mat-fab class="skip-button tiny" (click)="toggleUsedEntryGuessedState(entry)" *ngIf="!entry.guessed">
-          <mat-icon class="label">clear</mat-icon>
-        </button>
-      </div>
-    </div>
-
-    <button mat-raised-button color="primary" class="end-turn-button" (click)="closeSummary()">End turn</button>
-  </div>
-</ng-template>
+  <div class="push"><button class="primary" (click)="closeSummary()">End turn</button></div>
+</main>

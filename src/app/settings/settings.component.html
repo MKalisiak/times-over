@@ -1,38 +1,17 @@
-<div class="content-container">
-  <h1>Settings</h1>
-
-  <div class="menu-list">
-    <div>
-      <form [formGroup]="settingsForm">
-        <mat-form-field>
-          <input matInput id="numberOfTeams" type="number" formControlName="numberOfTeams"
-            placeholder="Number of teams">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput id="numberOfRounds" type="number" formControlName="numberOfRounds"
-            placeholder="Number of rounds">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput id="secondsPerTry" type="number" formControlName="secondsPerTry"
-            placeholder="Seconds per try">
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Duplicate policy</mat-label>
-          <mat-select [formControlName]="'duplicatePolicy'">
-            <mat-option *ngFor="let policy of duplicatePolicyView" [value]="policy.value">
-              {{ policy.name }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <!-- <mat-form-field>
-      <input matInput id="secondsSubstractedForSkip" type="number" formControlName="secondsSubstractedForSkip" placeholder="Seconds lost for skipping">
-    </mat-form-field> -->
-      </form>
-    </div>
-    <div>
-      <a routerLink="/">
-        <button mat-raised-button class="smaller" color="primary">Home</button>
-      </a>
-    </div>
-  </div>
-</div>
+<main>
+  <h1 class="top">Settings</h1>
+  <form [formGroup]="settingsForm">
+    <label for="numberOfTeams">Number of teams</label>
+    <input class="field" id="numberOfTeams" type="number" formControlName="numberOfTeams">
+    <label for="numberOfRounds">Number of rounds</label>
+    <input class="field" id="numberOfRounds" type="number" formControlName="numberOfRounds">
+    <label for="secondsPerTry">Seconds per try</label>
+    <input class="field" id="secondsPerTry" type="number" formControlName="secondsPerTry">
+    <label id="policy-label">Duplicate policy</label>
+    <mat-select class="field select" aria-labelledby="policy-label" panelClass="policy-options"
+                formControlName="duplicatePolicy">
+      <mat-option *ngFor="let policy of duplicatePolicyView" [value]="policy.value">{{ policy.name }}</mat-option>
+    </mat-select>
+  </form>
+  <div class="push"><a class="action primary" routerLink="/">Home</a></div>
+</main>

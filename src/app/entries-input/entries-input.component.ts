@@ -10,8 +10,7 @@ import { ClearConfirmationDialogComponent } from './clear-confirmation-dialog/cl
 
 @Component({
   selector: 'app-entries-input',
-  templateUrl: './entries-input.component.html',
-  styleUrls: ['./entries-input.component.scss']
+  templateUrl: './entries-input.component.html'
 })
 export class EntriesInputComponent implements OnInit {
 
@@ -42,7 +41,7 @@ export class EntriesInputComponent implements OnInit {
     if (entry) {
       this.entryForm.get('entry').patchValue(entry);
       if (this.duplicatePolicy === DuplicatePolicy.DONT_ALLOW && this.entriesService.includesEntry(entry)) {
-        this.error = 'Tough tittes, try something else';
+        this.error = 'This entry is already in the deck.';
       } else {
         this.entriesService.addEntry(entry);
         this.entryForm.reset();
@@ -64,7 +63,11 @@ export class EntriesInputComponent implements OnInit {
   }
 
   onClearClicked(): void {
-    const dialogRef = this.dialog.open(ClearConfirmationDialogComponent);
+    const dialogRef = this.dialog.open(ClearConfirmationDialogComponent, {
+      panelClass: 'clear-dialog',
+      maxWidth: 'calc(100vw - 44px)',
+      width: '380px'
+    });
     dialogRef.afterClosed().pipe(
       filter(result => !!result),
       tap(() => this.entriesService.clear())

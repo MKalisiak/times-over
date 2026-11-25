@@ -13,8 +13,7 @@ enum Mode {
 
 @Component({
   selector: 'app-main-game',
-  templateUrl: './main-game.component.html',
-  styleUrls: ['./main-game.component.scss']
+  templateUrl: './main-game.component.html'
 })
 export class MainGameComponent implements OnInit, OnDestroy {
   currentEntry: string;

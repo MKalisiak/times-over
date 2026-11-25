@@ -1,22 +1,10 @@
-<div class="content-container">
-
-  <h1>Time's over</h1>
-
-  <div class="menu-list">
-    <div>
-      <a routerLink="/entries">
-        <button mat-raised-button color="primary">
-          Play
-        </button>
-      </a>
-    </div>
-    <div>
-      <a routerLink="/settings">
-        <button mat-raised-button color="primary">
-          Settings
-        </button>
-      </a>
-    </div>
+<main class="hero">
+  <div class="stack" aria-hidden="true">
+    <div class="sheet back"></div>
+    <div class="sheet mid"></div>
+    <div class="sheet front"><img src="assets/hourglass.svg" alt=""></div>
   </div>
-
-</div>
+  <h1 class="title">Time’s<br><i>over.</i></h1>
+  <a class="action primary" routerLink="/entries">Play</a>
+  <a class="action" routerLink="/settings">Settings</a>
+</main>

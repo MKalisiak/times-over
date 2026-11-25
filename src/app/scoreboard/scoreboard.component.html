@@ -1,6 +1,7 @@
-<div class="content-container">
-  <h1>End of round {{ currentRound + 1 }}</h1>
+<main class="hero">
+  <h1 class="top">End of round {{ currentRound + 1 }}</h1>
 
+  <div class="card score-scroll">
   <table class="scores">
     <tr>
       <th></th>
@@ -19,7 +20,8 @@
       <td *ngFor="let total of totals">{{ total }}</td>
     </tr>
   </table>
+  </div>
 
-  <button mat-raised-button color="primary"
-    (click)="nextRound()">{{ isLastRound() ? 'End game' : 'Next round' }}</button>
-</div>
+  <div class="push"><button class="primary"
+    (click)="nextRound()">{{ isLastRound() ? 'End game' : 'Next round' }}</button></div>
+</main>

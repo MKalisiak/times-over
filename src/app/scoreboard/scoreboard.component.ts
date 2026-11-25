@@ -5,8 +5,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-scoreboard',
-  templateUrl: './scoreboard.component.html',
-  styleUrls: ['./scoreboard.component.scss']
+  templateUrl: './scoreboard.component.html'
 })
 export class ScoreboardComponent implements OnInit {
 
