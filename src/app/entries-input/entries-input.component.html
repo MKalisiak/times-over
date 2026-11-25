@@ -1,15 +1,15 @@
 <main>
-  <h1 class="top">Type in your<br>entries</h1>
+  <h1 class="top">{{ 'entries.title' | translate }}</h1>
   <form class="card" [formGroup]="entryForm" (ngSubmit)="saveEntry()" autocomplete="off">
-    <div class="counter"><span class="eyebrow">Entries</span><span class="num">{{ numberOfEntries() }}</span></div>
-    <label for="entry">Your entry</label>
+    <div class="counter"><span class="eyebrow">{{ 'entries.count' | translate }}</span><span class="num">{{ numberOfEntries() }}</span></div>
+    <label for="entry">{{ 'entries.label' | translate }}</label>
     <input class="input" id="entry" formControlName="entry" [class.invalid]="error"
            [attr.aria-invalid]="!!error" [attr.aria-describedby]="error ? 'entry-error' : null">
-    <p class="error" id="entry-error" role="alert" *ngIf="error">{{ error }}</p>
-    <button class="primary" type="submit">Save</button>
+    <p class="error" id="entry-error" role="alert" *ngIf="error">{{ 'entries.duplicate' | translate }}</p>
+    <button class="primary" type="submit">{{ 'entries.save' | translate }}</button>
   </form>
   <div class="push" *ngIf="numberOfEntries() > 0">
-    <button class="alt" (click)="continueToTeams()">Enough</button>
-    <button class="link" (click)="onClearClicked()">Clear</button>
+    <button class="alt" (click)="continueToTeams()">{{ 'entries.done' | translate }}</button>
+    <button class="link" (click)="onClearClicked()">{{ 'entries.clear' | translate }}</button>
   </div>
 </main>

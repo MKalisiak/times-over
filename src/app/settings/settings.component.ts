@@ -2,18 +2,7 @@ import { Subscription } from 'rxjs';
 import { SettingsService, Settings, DuplicatePolicy } from './../services/settings.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { trigger, state, style, transition, animate } from '@angular/animations';
-
-interface DuplicatePolicyView {
-  name: string;
-  value: DuplicatePolicy;
-}
-
-const duplicatePolicyNames = {
-  DONT_ALLOW: 'Don\'t allow',
-  REMOVE_SILENTLY: 'Remove silently',
-  // REMOVE_AND_REPLACE: 'Remove and replace'
-};
+import { LanguageService } from '../i18n/language.service';
 
 @Component({
   selector: 'app-settings',
@@ -23,27 +12,19 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   settingsForm: FormGroup;
   settingsValueChangesSub: Subscription;
-  duplicatePolicyView: Array<DuplicatePolicyView>;
+  readonly duplicatePolicyView = [
+    { labelKey: 'settings.reject', value: DuplicatePolicy.DONT_ALLOW },
+    { labelKey: 'settings.remove', value: DuplicatePolicy.REMOVE_SILENTLY }
+  ];
 
-  constructor(private formBuilder: FormBuilder, private settingsService: SettingsService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private settingsService: SettingsService,
+    public languages: LanguageService
+  ) {}
 
   ngOnInit() {
     const settings = this.settingsService.settings;
-
-    this.duplicatePolicyView = [
-      {
-        name: duplicatePolicyNames.DONT_ALLOW,
-        value: DuplicatePolicy.DONT_ALLOW
-      },
-      {
-        name: duplicatePolicyNames.REMOVE_SILENTLY,
-        value: DuplicatePolicy.REMOVE_SILENTLY
-      },
-      // {
-      //   name: duplicatePolicyNames.REMOVE_AND_REPLACE,
-      //   value: DuplicatePolicy.REMOVE_AND_REPLACE
-      // }
-    ];
     this.settingsForm = this.formBuilder.group({
       numberOfTeams: settings.numberOfTeams,
       numberOfRounds: settings.numberOfRounds,

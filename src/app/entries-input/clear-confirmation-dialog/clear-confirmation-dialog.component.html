@@ -1,5 +1,5 @@
-<h2 mat-dialog-title>Are you sure you want to clear all entries?</h2>
+<h2 mat-dialog-title>{{ 'entries.confirmClear' | translate }}</h2>
 <div class="pair">
-  <button class="primary" mat-dialog-close>No</button>
-  <button class="alt" [mat-dialog-close]="true">Yes</button>
+  <button class="primary" mat-dialog-close>{{ 'entries.cancelClear' | translate }}</button>
+  <button class="alt" [mat-dialog-close]="true">{{ 'entries.acceptClear' | translate }}</button>
 </div>

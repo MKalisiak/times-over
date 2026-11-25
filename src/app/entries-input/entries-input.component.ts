@@ -14,7 +14,7 @@ import { ClearConfirmationDialogComponent } from './clear-confirmation-dialog/cl
 export class EntriesInputComponent implements OnInit {
 
   entryForm: FormGroup;
-  error: string;
+  error = false;
   duplicatePolicy: DuplicatePolicy;
 
   constructor(
@@ -39,11 +39,11 @@ export class EntriesInputComponent implements OnInit {
     if (entry) {
       this.entryForm.get('entry').patchValue(entry);
       if (this.duplicatePolicy === DuplicatePolicy.DONT_ALLOW && this.entriesService.includesEntry(entry)) {
-        this.error = 'This entry is already in the deck.';
+        this.error = true;
       } else {
         this.entriesService.addEntry(entry);
         this.entryForm.reset();
-        this.error = null;
+        this.error = false;
       }
     }
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EntriesService } from '../services/entries.service';
@@ -14,6 +15,7 @@ export class TeamNamesComponent implements OnInit {
   names: FormControl[] = [];
 
   constructor(
+    private translate: TranslateService,
     private entries: EntriesService,
     private settings: SettingsService,
     private game: GameService,
@@ -29,7 +31,9 @@ export class TeamNamesComponent implements OnInit {
   }
 
   startGame(): void {
-    const names = this.names.map((control, index) => control.value.trim() || `Team ${index + 1}`);
+    const names = this.names.map((control, index) =>
+      control.value.trim() || this.translate.instant('teams.numbered', { number: index + 1 })
+    );
     this.game.initGame(names);
     this.router.navigateByUrl('/game');
   }

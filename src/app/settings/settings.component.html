@@ -1,17 +1,24 @@
 <main>
-  <h1 class="top">Settings</h1>
+  <h1 class="top">{{ 'settings.title' | translate }}</h1>
+  <label id="language-label">{{ 'settings.language' | translate }}</label>
+  <mat-select class="field select" aria-labelledby="language-label" panelClass="policy-options"
+              [value]="languages.current" (selectionChange)="languages.select($event.value)">
+    <mat-option *ngFor="let language of languages.options" [value]="language.code">
+      <span [attr.lang]="language.code">{{ language.name }}</span>
+    </mat-option>
+  </mat-select>
   <form [formGroup]="settingsForm">
-    <label for="numberOfTeams">Number of teams</label>
+    <label for="numberOfTeams">{{ 'settings.teams' | translate }}</label>
     <input class="field" id="numberOfTeams" type="number" formControlName="numberOfTeams">
-    <label for="numberOfRounds">Number of rounds</label>
+    <label for="numberOfRounds">{{ 'settings.rounds' | translate }}</label>
     <input class="field" id="numberOfRounds" type="number" formControlName="numberOfRounds">
-    <label for="secondsPerTry">Seconds per try</label>
+    <label for="secondsPerTry">{{ 'settings.seconds' | translate }}</label>
     <input class="field" id="secondsPerTry" type="number" formControlName="secondsPerTry">
-    <label id="policy-label">Duplicate policy</label>
+    <label id="policy-label">{{ 'settings.duplicates' | translate }}</label>
     <mat-select class="field select" aria-labelledby="policy-label" panelClass="policy-options"
                 formControlName="duplicatePolicy">
-      <mat-option *ngFor="let policy of duplicatePolicyView" [value]="policy.value">{{ policy.name }}</mat-option>
+      <mat-option *ngFor="let policy of duplicatePolicyView" [value]="policy.value">{{ policy.labelKey | translate }}</mat-option>
     </mat-select>
   </form>
-  <div class="push"><a class="action primary" routerLink="/">Home</a></div>
+  <div class="push"><a class="action primary" routerLink="/">{{ 'settings.home' | translate }}</a></div>
 </main>

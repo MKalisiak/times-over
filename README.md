@@ -25,3 +25,11 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Interface translations
+
+The app uses ngx-translate and starts in Polish. Each language has a JSON catalog in
+`src/app/i18n/`. To add a language, copy `pl.json`, translate its values, keep the
+keys and named placeholders (such as `{{number}}`), and set `languageName` to the
+language's own name. Import the catalog and register its language code in
+`language.service.ts`. The settings menu lists registered catalogs automatically.
