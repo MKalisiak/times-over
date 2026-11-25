@@ -1,30 +1,30 @@
 <main *ngIf="activeMode === mode.WAITING_FOR_READY" class="poster">
   <section class="card ticket">
-    <div class="eyebrow">Round {{ currentRound + 1 }}</div>
+    <div class="eyebrow">{{ 'game.round' | translate: { number: currentRound + 1 } }}</div>
     <h1 class="team">{{ activeTeamName }}</h1>
-    <div>Now playing</div>
+    <div>{{ 'game.playing' | translate }}</div>
     <hr>
-    <div class="counter"><span class="eyebrow">Entries left</span><span class="num">{{ entriesLeft() }}</span></div>
+    <div class="counter"><span class="eyebrow">{{ 'game.remaining' | translate }}</span><span class="num">{{ entriesLeft() }}</span></div>
   </section>
-  <button class="primary" (click)="ready()">Ready</button>
+  <button class="primary" (click)="ready()">{{ 'game.ready' | translate }}</button>
 </main>
 <main *ngIf="activeMode === mode.PLAYING" class="dark">
-  <div class="timer"><span class="eyebrow">Time left</span><strong>{{ viewSecondsLeft }} s</strong></div>
+  <div class="timer"><span class="eyebrow">{{ 'game.timeLeft' | translate }}</span><strong>{{ 'game.seconds' | translate: { count: viewSecondsLeft } }}</strong></div>
   <section class="card wordcard"><h1 class="word">{{ currentEntry }}</h1></section>
-  <button class="green" (click)="guess()"><span aria-hidden="true">✓　</span>Guessed</button>
-  <button class="peach" (click)="skip()"><span aria-hidden="true">×　</span>Skip</button>
+  <button class="green" (click)="guess()"><span aria-hidden="true">✓　</span>{{ 'game.guess' | translate }}</button>
+  <button class="peach" (click)="skip()"><span aria-hidden="true">×　</span>{{ 'game.skip' | translate }}</button>
 </main>
 <main *ngIf="activeMode === mode.TURN_SUMMARY">
-  <h1 class="top">End of turn · {{ activeTeamName }}</h1>
+  <h1 class="top">{{ 'game.turnSummary' | translate: { team: activeTeamName } }}</h1>
   <div class="card">
     <div class="listrow" *ngFor="let entry of usedEntries">
       <span>{{ entry.entry }}</span>
       <button class="state" [class.green]="entry.guessed" [class.peach]="!entry.guessed"
-              [attr.aria-label]="'Guessed: ' + entry.entry" [attr.aria-pressed]="entry.guessed"
+              [attr.aria-label]="'game.guessedLabel' | translate: { entry: entry.entry }" [attr.aria-pressed]="entry.guessed"
               (click)="toggleUsedEntryGuessedState(entry)">
-        {{ entry.guessed ? '✓ Guessed' : '× Skipped' }}
+        <span aria-hidden="true">{{ entry.guessed ? '✓' : '×' }}</span> {{ (entry.guessed ? 'game.guessed' : 'game.skipped') | translate }}
       </button>
     </div>
   </div>
-  <div class="push"><button class="primary" (click)="closeSummary()">End turn</button></div>
+  <div class="push"><button class="primary" (click)="closeSummary()">{{ 'game.endTurn' | translate }}</button></div>
 </main>

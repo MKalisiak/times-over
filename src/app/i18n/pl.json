@@ -1,0 +1,60 @@
+{
+  "languageName": "Polski",
+  "brand": {
+    "name": "Time’s over",
+    "firstLine": "Time’s",
+    "secondLine": "over."
+  },
+  "home": {
+    "play": "Graj"
+  },
+  "settings": {
+    "title": "Ustawienia",
+    "language": "Język",
+    "teams": "Liczba drużyn",
+    "rounds": "Liczba rund",
+    "seconds": "Czas tury (w sekundach)",
+    "duplicates": "Powtarzające się hasła",
+    "reject": "Nie zezwalaj",
+    "remove": "Usuń powtórzenia przed grą",
+    "home": "Menu główne"
+  },
+  "entries": {
+    "title": "Wpisz hasła",
+    "count": "Liczba haseł",
+    "label": "Twoje hasło",
+    "save": "Dodaj hasło",
+    "done": "Gotowe",
+    "clear": "Wyczyść",
+    "duplicate": "To hasło jest już w puli.",
+    "confirmClear": "Czy usunąć wszystkie hasła?",
+    "cancelClear": "Nie",
+    "acceptClear": "Tak"
+  },
+  "teams": {
+    "title": "Nazwij drużyny",
+    "numbered": "Drużyna {{number}}",
+    "continue": "Dalej"
+  },
+  "game": {
+    "round": "Runda {{number}}",
+    "playing": "Teraz gra",
+    "remaining": "Pozostałe hasła",
+    "ready": "Zaczynamy",
+    "timeLeft": "Pozostały czas",
+    "seconds": "{{count}} s",
+    "guess": "Odgadnięte",
+    "skip": "Pomiń",
+    "turnSummary": "Koniec tury · {{team}}",
+    "guessed": "Odgadnięte",
+    "skipped": "Pominięte",
+    "guessedLabel": "Odgadnięte hasło: {{entry}}",
+    "endTurn": "Zakończ turę"
+  },
+  "scores": {
+    "title": "Podsumowanie rundy {{number}}",
+    "total": "Suma",
+    "next": "Następna runda",
+    "end": "Zakończ grę"
+  }
+}

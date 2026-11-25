@@ -1,0 +1,60 @@
+{
+  "languageName": "English",
+  "brand": {
+    "name": "Time’s over",
+    "firstLine": "Time’s",
+    "secondLine": "over."
+  },
+  "home": {
+    "play": "Play"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "teams": "Number of teams",
+    "rounds": "Number of rounds",
+    "seconds": "Seconds per turn",
+    "duplicates": "Duplicate entries",
+    "reject": "Don’t allow",
+    "remove": "Remove silently",
+    "home": "Home"
+  },
+  "entries": {
+    "title": "Type in your entries",
+    "count": "Entries",
+    "label": "Your entry",
+    "save": "Save",
+    "done": "Enough",
+    "clear": "Clear",
+    "duplicate": "This entry is already in the deck.",
+    "confirmClear": "Are you sure you want to clear all entries?",
+    "cancelClear": "No",
+    "acceptClear": "Yes"
+  },
+  "teams": {
+    "title": "Name your teams",
+    "numbered": "Team {{number}}",
+    "continue": "Continue"
+  },
+  "game": {
+    "round": "Round {{number}}",
+    "playing": "Now playing",
+    "remaining": "Entries left",
+    "ready": "Ready",
+    "timeLeft": "Time left",
+    "seconds": "{{count}} s",
+    "guess": "Guessed",
+    "skip": "Skip",
+    "turnSummary": "End of turn · {{team}}",
+    "guessed": "Guessed",
+    "skipped": "Skipped",
+    "guessedLabel": "Guessed: {{entry}}",
+    "endTurn": "End turn"
+  },
+  "scores": {
+    "title": "End of round {{number}}",
+    "total": "Total",
+    "next": "Next round",
+    "end": "End game"
+  }
+}

@@ -1,6 +1,8 @@
 import { ClearConfirmationDialogComponent } from './entries-input/clear-confirmation-dialog/clear-confirmation-dialog.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { TeamNamesComponent } from './team-names/team-names.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { LanguageService } from './i18n/language.service';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -34,6 +36,7 @@ import { MatDialogModule } from '@angular/material';
     ClearConfirmationDialogComponent,
   ],
   imports: [
+    TranslateModule.forRoot(),
     CommonModule,
     BrowserModule,
     AppRoutingModule,
@@ -59,4 +62,8 @@ import { MatDialogModule } from '@angular/material';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(languages: LanguageService) {
+    languages.initialize();
+  }
+}

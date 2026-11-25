@@ -1,15 +1,13 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { AppModule } from './app.module';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
+        AppModule, RouterTestingModule
       ],
     }).compileComponents();
   }));
@@ -26,10 +24,10 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('times-over');
   });
 
-  it('should render title in a h1 tag', () => {
+  it('should display the game name in the header', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to times-over!');
+    expect(compiled.querySelector('header').textContent).toContain('Time’s over');
   });
 });
