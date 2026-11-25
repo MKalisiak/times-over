@@ -1,0 +1,10 @@
+<main>
+  <h1 class="top">Name your<br>teams</h1>
+  <form id="team-names" class="card" (ngSubmit)="startGame()" autocomplete="off">
+    <div class="team-field" *ngFor="let name of names; let i = index">
+      <label [attr.for]="'team-' + i">Team {{ i + 1 }}</label>
+      <input class="input" [id]="'team-' + i" [formControl]="name" [placeholder]="'Team ' + (i + 1)">
+    </div>
+  </form>
+  <div class="push"><button class="primary" type="submit" form="team-names">Continue</button></div>
+</main>

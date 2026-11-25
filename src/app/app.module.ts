@@ -1,5 +1,6 @@
 import { ClearConfirmationDialogComponent } from './entries-input/clear-confirmation-dialog/clear-confirmation-dialog.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { TeamNamesComponent } from './team-names/team-names.component';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -28,6 +29,7 @@ import { MatDialogModule } from '@angular/material';
     HomeComponent,
     ScoreboardComponent,
     EntriesInputComponent,
+    TeamNamesComponent,
     MainGameComponent,
     ClearConfirmationDialogComponent,
   ],

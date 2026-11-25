@@ -3,6 +3,7 @@ import { MainGameComponent } from './main-game/main-game.component';
 import { EntriesInputComponent } from './entries-input/entries-input.component';
 import { SettingsComponent } from './settings/settings.component';
 import { HomeComponent } from './home/home.component';
+import { TeamNamesComponent } from './team-names/team-names.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -22,6 +23,10 @@ const routes: Routes = [
     path: 'entries',
     component: EntriesInputComponent,
     data: {animation: 'Entries'}
+  },
+  {
+    path: 'team-names',
+    component: TeamNamesComponent
   },
   {
     path: 'game',

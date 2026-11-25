@@ -11,6 +11,7 @@ export class ScoreboardComponent implements OnInit {
 
   scores: Array<Array<number>>;
   currentRound: number;
+  teamNames: string[];
   totals: Array<number>;
 
   constructor(
@@ -19,6 +20,7 @@ export class ScoreboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.teamNames = this.gameService.teamNames;
     this.scores = this.gameService.scores;
     this.currentRound = this.gameService.currentRound;
     this.scores[this.currentRound].forEach((score, index) => {

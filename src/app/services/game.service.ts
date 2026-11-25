@@ -13,6 +13,7 @@ export interface UsedEntry {
 })
 export class GameService {
 
+  teamNames: string[];
   scores: Array<Array<number>>;
   activeTeamIndex: number;
   currentRound: number;
@@ -33,7 +34,8 @@ export class GameService {
     this.currentEntry = this.currentEntry$.asObservable();
   }
 
-  initGame(): void {
+  initGame(teamNames: string[]): void {
+    this.teamNames = teamNames;
     this.settings = this.settingsService.settings;
     this.scores = new Array(this.settings.numberOfRounds);
     for (let i = 0; i < this.settings.numberOfRounds; i++) {
