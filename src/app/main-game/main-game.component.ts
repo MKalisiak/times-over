@@ -46,6 +46,17 @@ export class MainGameComponent implements OnInit, OnDestroy {
     this.currentRound = this.gameService.currentRound;
   }
 
+  get canReviewPreviousTurn(): boolean {
+    return this.gameService.canReviewPreviousTurn;
+  }
+
+  reviewPreviousTurn(): void {
+    this.gameService.reopenPreviousTurn();
+    this.currentRound = this.gameService.currentRound;
+    this.usedEntries = this.gameService.entriesUsed;
+    this.activeMode = Mode.TURN_SUMMARY;
+  }
+
   ready() {
     this.gameService.emitNextEntry();
     this.activeMode = Mode.PLAYING;

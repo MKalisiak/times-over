@@ -45,6 +45,7 @@
     "seconds": "{{count}} s",
     "guess": "Odgadnięte",
     "skip": "Pomiń",
+    "reviewPrevious": "Popraw poprzednią turę",
     "turnSummary": "Koniec tury · {{team}}",
     "guessed": "Odgadnięte",
     "skipped": "Pominięte",

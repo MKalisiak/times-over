@@ -45,6 +45,7 @@
     "seconds": "{{count}} s",
     "guess": "Guessed",
     "skip": "Skip",
+    "reviewPrevious": "Review previous turn",
     "turnSummary": "End of turn · {{team}}",
     "guessed": "Guessed",
     "skipped": "Skipped",

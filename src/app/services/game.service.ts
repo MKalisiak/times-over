@@ -8,6 +8,14 @@ export interface UsedEntry {
   guessed: boolean;
 }
 
+interface TurnSummary {
+  round: number;
+  team: number;
+  roundScores: number[];
+  entriesLeft: string[];
+  entriesUsed: UsedEntry[];
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,6 +23,7 @@ export class GameService {
 
   teamNames: string[];
   scores: Array<Array<number>>;
+  private previousTurn: TurnSummary | null = null;
   private activeTeamIndex: number;
   currentRound: number;
   entriesLeft: Array<string>;
@@ -39,6 +48,7 @@ export class GameService {
   }
 
   initGame(teamNames: string[]): void {
+    this.previousTurn = null;
     this.teamNames = teamNames;
     this.settings = this.settingsService.settings;
     if (this.settings.duplicatePolicy === DuplicatePolicy.REMOVE_SILENTLY) {
@@ -59,7 +69,34 @@ export class GameService {
     this.entriesLeft = shuffle([...this.entriesService.entries]);
   }
 
+  get canReviewPreviousTurn(): boolean {
+    return this.previousTurn !== null;
+  }
+
+  reopenPreviousTurn(): void {
+    const turn = this.previousTurn;
+    if (!turn) {
+      return;
+    }
+
+    this.currentRound = turn.round;
+    this.activeTeamIndex = turn.team;
+    this.scores[turn.round] = turn.roundScores;
+    this.entriesLeft = turn.entriesLeft;
+    this.entriesUsed = turn.entriesUsed;
+    this.previousTurn = null;
+  }
+
   initNextTurn(): void {
+    // Keep the state before scoring and shuffling skipped entries back into the deck.
+    this.previousTurn = {
+      round: this.currentRound,
+      team: this.activeTeamIndex,
+      roundScores: this.scores[this.currentRound].slice(),
+      entriesLeft: this.entriesLeft.slice(),
+      entriesUsed: this.entriesUsed.slice()
+    };
+
     this.scores[this.currentRound][this.activeTeamIndex] += this.entriesUsed.filter(entry => entry.guessed === true).length;
     this.activeTeamIndex = (this.activeTeamIndex + 1) % this.teamNames.length;
     this.returnEntries(this.entriesUsed.filter(entry => entry.guessed === false));
@@ -69,6 +106,7 @@ export class GameService {
   initNextRound(): void {
     this.currentRound += 1;
     if (this.currentRound >= this.settings.numberOfRounds) {
+      this.previousTurn = null;
       this.entriesService.clear();
       throw(new Error('Game ended'));
     }
@@ -77,6 +115,7 @@ export class GameService {
 
   emitNextEntry(): void {
     if (this.entriesLeft.length > 0) {
+      this.previousTurn = null;
       this.currentEntry$.next(this.entriesLeft.pop());
     } else {
       throw(new Error('No more entries'));
