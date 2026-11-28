@@ -7,6 +7,7 @@
     <div class="counter"><span class="eyebrow">{{ 'game.remaining' | translate }}</span><span class="num">{{ entriesLeft() }}</span></div>
   </section>
   <button class="primary" (click)="ready()">{{ 'game.ready' | translate }}</button>
+  <button *ngIf="canReviewPreviousTurn" (click)="reviewPreviousTurn()">{{ 'game.reviewPrevious' | translate }}</button>
 </main>
 <main *ngIf="activeMode === mode.PLAYING" class="dark">
   <div class="timer"><span class="eyebrow">{{ 'game.timeLeft' | translate }}</span><strong>{{ 'game.seconds' | translate: { count: viewSecondsLeft } }}</strong></div>
